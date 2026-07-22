@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run typecheck
+      - run: bun test
+      - run: bun run simulate 200
+      - run: bun run build
+        env:
+          DATABASE_URL: file:./data/rill.db
+          SESSION_SECRET: ci-secret-with-at-least-thirty-two-characters
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - run: bun run db:migrate
+        env:
+          DATABASE_URL: file:./data/rill.db
+          SESSION_SECRET: ci-secret-with-at-least-thirty-two-characters
+      - run: bun run test:e2e
+        env:
+          DATABASE_URL: file:./data/rill.db
+          SESSION_SECRET: ci-secret-with-at-least-thirty-two-characters
+          NEXT_PUBLIC_APP_URL: http://localhost:3117

@@ -1,0 +1,56 @@
+.board { width: 100%; height: 100%; min-height: 0; overflow: visible; filter: drop-shadow(0 28px 36px rgba(2, 13, 10, .28)); }
+.seaShadow { fill: rgba(1, 15, 13, .44); }
+.sea { stroke: #c8a963; stroke-width: 7; }
+.coastRing { fill: none; stroke: rgba(226, 219, 181, .3); stroke-width: 2; stroke-dasharray: 3 10; }
+.waves { fill: none; stroke: rgba(204, 237, 222, .35); stroke-width: 3; stroke-linecap: round; animation: tide 9s ease-in-out infinite alternate; }
+.compass { opacity: .3; fill: none; stroke: #e7dba9; stroke-width: 1.5; }
+.compass circle:last-of-type { stroke-dasharray: 2 6; }
+.compass text { fill: #e7dba9; stroke: none; text-anchor: middle; font: 700 12px Georgia, serif; }
+.compassNeedle { fill: rgba(231, 219, 169, .5); }
+.tile { cursor: default; transform-box: fill-box; transform-origin: center; transition: transform 180ms var(--ease), filter 180ms; }
+.tile > polygon:first-of-type { stroke: #d9c69d; stroke-width: 10; stroke-linejoin: round; }
+.tile > polygon:first-of-type + polygon { stroke: rgba(255, 248, 215, .18); stroke-width: 2; stroke-linejoin: round; }
+.texture { pointer-events: none; }
+.grain > polygon:first-of-type { fill: #c89a3a; }
+.lumber > polygon:first-of-type { fill: #376f4e; }
+.wool > polygon:first-of-type { fill: #7da15e; }
+.brick > polygon:first-of-type { fill: #a5533d; }
+.ore > polygon:first-of-type { fill: #697a76; }
+.desert > polygon:first-of-type { fill: #c8ad72; }
+.motif { fill: none; stroke: rgba(29, 50, 40, .2); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.lumber .motif { stroke: rgba(13, 55, 36, .34); }.ore .motif { stroke: rgba(36, 52, 50, .3); }.brick .motif { stroke: rgba(84, 38, 28, .25); }.grain .motif { stroke: rgba(101, 69, 22, .27); }.wool .motif { stroke: rgba(49, 78, 39, .24); }.desert .motif { stroke: rgba(112, 80, 36, .22); }
+.number circle { fill: #fff2cf; stroke: rgba(78, 66, 43, .28); stroke-width: 2; }
+.number .numberRing { fill: rgba(44, 63, 54, .16); stroke: rgba(255, 244, 211, .45); stroke-width: 1; }
+.number text { text-anchor: middle; font: 750 23px Georgia, serif; fill: #293c35; }
+.number .pips { font: 800 7px Inter, sans-serif; letter-spacing: 1px; fill: #7b5b43; }
+.number.hot circle { fill: #ffe2b4; stroke: #a94837; stroke-width: 3; }
+.number.hot .numberRing { fill: rgba(170, 66, 48, .24); stroke: rgba(255, 223, 179, .8); }
+.number.hot text { fill: #a23e32; }
+.robber { fill: #1e312b; stroke: #f2d797; stroke-width: 2; animation: settle 450ms var(--ease); filter: drop-shadow(0 6px 5px rgba(0,0,0,.38)); }
+.robberMark { fill: none; stroke: #f2d797; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.tile.legal { cursor: pointer; }
+.tile.legal:hover,.tile.legal:focus { transform: translateY(-9px) scale(1.022); filter: brightness(1.1) drop-shadow(0 12px 9px rgba(0,0,0,.2)); outline: 0; }
+.tile.legal > polygon:first-of-type { stroke: #ffe49a; animation: glow 1s ease-in-out infinite alternate; }
+.ports circle { fill: #f4e7c3; stroke: #285f62; stroke-width: 4; filter: drop-shadow(0 4px 3px rgba(0,0,0,.24)); }
+.ports path { fill: none; stroke: #789b88; stroke-width: 2; }
+.ports text { text-anchor: middle; fill: #294b45; }
+.portName { font: 850 6px Inter, sans-serif; letter-spacing: .04em; }.portRatio { font: 850 9px Inter, sans-serif; }
+.roads line { stroke: transparent; stroke-width: 15; stroke-linecap: round; paint-order: stroke; transition: stroke 160ms, stroke-width 140ms, opacity 140ms; }
+.roads line.ember { stroke: #d45b3c; }.roads line.river { stroke: #2688a1; }.roads line.pine { stroke: #3d8a65; }.roads line.plum { stroke: #985e91; }
+.roads line.ember,.roads line.river,.roads line.pine,.roads line.plum { stroke-width: 16; stroke-linecap: round; filter: drop-shadow(0 4px 2px rgba(0,0,0,.4)); animation: roadIn 350ms var(--ease); }
+.roads line.legalRoad { stroke: rgba(255, 230, 158, .9); stroke-width: 22; cursor: pointer; stroke-dasharray: 6 9; animation: march 620ms linear infinite; filter: drop-shadow(0 0 7px rgba(255, 218, 118, .6)); }
+.roads line.legalRoad:hover,.roads line.legalRoad:focus { stroke-width: 29; outline: 0; }
+.buildings path { stroke: #fff0c9; stroke-width: 4; stroke-linejoin: round; animation: build 380ms var(--ease); filter: drop-shadow(0 5px 2px rgba(0,0,0,.42)); }
+.buildings path.ember { fill: #c94d31; }.buildings path.river { fill: #1f819b; }.buildings path.pine { fill: #2f7957; }.buildings path.plum { fill: #854e80; }
+.legalVertex { cursor: pointer; outline: 0; }
+.legalVertex circle:first-child { fill: rgba(255, 229, 151, .1); stroke: rgba(255, 228, 143, .9); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: bloom 900ms ease-in-out infinite alternate; filter: drop-shadow(0 0 8px rgba(255, 223, 132, .8)); }
+.legalVertex circle:last-child { fill: #fff1bf; }
+.legalVertex:hover circle:first-child,.legalVertex:focus circle:first-child { fill: rgba(255, 240, 190, .42); stroke-width: 4; }
+@keyframes tide { to { transform: translate3d(22px, 8px, 0); opacity: .65; } }
+@keyframes glow { to { stroke-width: 16; } }
+@keyframes march { to { stroke-dashoffset: -15; } }
+@keyframes bloom { to { transform: scale(1.18); opacity: .68; } }
+@keyframes build { from { opacity: 0; transform: translateY(20px) scaleY(.18); } }
+@keyframes roadIn { from { stroke-dasharray: 0 200; stroke-dashoffset: 200; } to { stroke-dasharray: 200 0; stroke-dashoffset: 0; } }
+@keyframes settle { from { transform: translateY(-34px) scale(.7); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .waves,.tile.legal>polygon:first-of-type,.roads line.legalRoad,.legalVertex circle:first-child,.buildings path,.robber,.roads line { animation: none; } }

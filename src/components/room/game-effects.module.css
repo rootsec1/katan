@@ -1,0 +1,28 @@
+.layer { position: absolute; inset: 0; z-index: 7; pointer-events: none; display: grid; place-items: center; }
+.activity { position: absolute; top: 16px; left: 50%; width: max-content; max-width: min(520px, 74%); min-height: 58px; transform: translateX(-50%); display: grid; grid-template-columns: 40px 1fr 22px; align-items: center; gap: 10px; padding: 8px 12px 8px 8px; color: #f9f0d8; background: rgba(20, 32, 29, .94); border: 1px solid rgba(245, 213, 141, .28); border-radius: 15px; box-shadow: 0 18px 38px rgba(9, 20, 17, .3); animation: activityIn 240ms cubic-bezier(.2,.8,.2,1), activityOut 300ms 3.2s ease forwards; }
+.tableActivity { grid-template-columns: 1fr 22px; min-width: 260px; padding-left: 14px; }
+.activity > div { display: grid; gap: 2px; }
+.activity small { color: #c2bba7; font: 750 8px/1.2 Inter, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.activity strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 650 12px/1.25 Inter, system-ui, sans-serif; }
+.activity > i { width: 6px; height: 6px; border-radius: 50%; background: #efcf80; box-shadow: 0 0 0 5px rgba(239, 207, 128, .12); animation: signal 900ms ease-in-out infinite alternate; }
+.actor { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; color: white; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); }
+.actor svg { width: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ember { background: #b84d35; }.river { background: #1d7189; }.pine { background: #2d6b52; }.plum { background: #71486e; }
+.diceStage { position: relative; width: 290px; min-height: 255px; display: grid; justify-items: center; align-content: center; gap: 9px; color: #fff7dc; border: 1px solid rgba(244, 215, 146, .38); border-radius: 50%; background: radial-gradient(circle, rgba(38, 55, 48, .97) 0 57%, rgba(24, 38, 33, .88) 58% 66%, transparent 67%); filter: drop-shadow(0 28px 36px rgba(8, 20, 16, .42)); animation: stageIn 280ms cubic-bezier(.2,.85,.2,1), stageOut 350ms 1.95s ease forwards; }
+.diceStage::before { content: ""; position: absolute; inset: 16px; border: 1px dashed rgba(242, 207, 126, .3); border-radius: inherit; animation: compass 14s linear infinite; }
+.diceStage p { margin: 0; color: #d7ceb7; font: 750 9px/1 Inter, system-ui, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.diceStage > strong { font: 600 42px/.85 Georgia, serif; color: #f5d481; }
+.diceStage > small { color: #cfc6ae; font: 600 10px/1 Inter, system-ui, sans-serif; }
+.dicePair { display: flex; gap: 13px; perspective: 500px; }
+.die { width: 64px; height: 64px; padding: 11px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); place-items: center; border: 1px solid #d9c99e; border-radius: 14px; background: #fff8e5; box-shadow: inset 0 -6px 0 #ddcea6, 0 12px 18px rgba(0,0,0,.28); animation: cast 620ms cubic-bezier(.22,.75,.24,1); }
+.die:nth-child(2) { animation-delay: 80ms; }
+.die i { width: 8px; height: 8px; border-radius: 50%; }
+.die .pip { background: #263a34; box-shadow: inset 0 1px 2px rgba(0,0,0,.5); }
+@keyframes activityIn { from { opacity: 0; transform: translate(-50%, -14px) scale(.96); } }
+@keyframes activityOut { to { opacity: 0; transform: translate(-50%, -8px); } }
+@keyframes stageIn { from { opacity: 0; transform: scale(.72); } }
+@keyframes stageOut { to { opacity: 0; transform: scale(.9); } }
+@keyframes cast { 0% { transform: translateY(-85px) rotateX(60deg) rotateZ(-34deg) scale(.65); opacity: 0; } 62% { transform: translateY(7px) rotateX(-8deg) rotateZ(6deg) scale(1.04); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes compass { to { transform: rotate(360deg); } }
+@keyframes signal { to { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .activity,.diceStage,.die,.diceStage::before,.activity>i { animation: none; } }
