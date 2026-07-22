@@ -10,7 +10,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "bun run dev -- --port 3117",
+    command: "bun --bun next dev --webpack --port 3117",
     url: "http://localhost:3117",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
