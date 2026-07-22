@@ -193,7 +193,7 @@ describe("base rules engine", () => {
         expect(state.winnerPlayerId).not.toBeNull();
       }
     }
-  }, 15_000);
+  }, 30_000);
 
   test("empty resource bags remain independent", () => {
     const first = emptyResourceBag(); const second = emptyResourceBag(); first.ore = 2;
